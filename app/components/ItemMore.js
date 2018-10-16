@@ -12,6 +12,7 @@ import TimeUtil from "../utils/TimeUtil";
 import NetUtil from "../utils/NetUtil";
 import Api from "../network/Api";
 import { Actions } from "react-native-router-flux";
+
 /**
  * Description:
  *
@@ -44,8 +45,9 @@ export default class ItemMore extends PureComponent {
         let commentCount = item.post.comment_count;
 
         let categoryTitle = item.post.category.title;
-        let publishTime = TimeUtil.formatDate(item.post.publish_time, "yyyy-MM-dd hh:mm");
-
+        console.log("time:"+item.post.publish_time)
+        let publishTime = TimeUtil.getDateDiff(item.post.publish_time);
+        console.log("time:publishTime："+publishTime)
         return (
             <View style={moreItemStyles.more}>
                 <Text style={moreItemStyles.moreTxt}>{categoryTitle}</Text>
@@ -69,7 +71,7 @@ export default class ItemMore extends PureComponent {
                     <Text style={moreItemStyles.moreTxt}>{this.state.praiseCount}</Text>
 
                 </TouchableOpacity>
-                <Text style={[ moreItemStyles.moreTxt, { marginLeft : 5 } ]}>{publishTime}</Text>
+                <Text style={[ moreItemStyles.moreTxt, { marginLeft : 15 } ]}>{publishTime}</Text>
             </View>
         )
     }

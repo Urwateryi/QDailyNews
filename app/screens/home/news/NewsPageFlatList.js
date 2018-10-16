@@ -14,7 +14,7 @@ import Colors from "../../../resources/Colors";
 import FeedsItem from "./FeedsItem";
 import Api from "../../../network/Api";
 import NetUtil from "../../../utils/NetUtil";
-import NewsBanner from "./NewsBanner";
+import NewsBanner2 from "./NewsBanner2";
 
 const MAX_RESULT = 20;//每页最大记录数
 
@@ -121,7 +121,7 @@ export default class NewsPageFlatList extends Component {
      */
     renderHeader = (banners) => {
         return (
-            <NewsBanner data={banners}/>
+            <NewsBanner2 data={banners}/>
         )
     };
 
