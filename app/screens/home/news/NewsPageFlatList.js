@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
-    FlatList,
+    FlatList, RefreshControl,
 } from 'react-native';
 
 import Colors from "../../../resources/Colors";
@@ -49,6 +49,28 @@ export default class NewsPageFlatList extends Component {
         };
     }
 
+    /**
+     * 初始化
+     * @private
+     */
+    _initState() {
+        this.setState({
+            refreshing: false,
+            loading: false,
+            error: '',
+            last_key: 0,
+            has_more: true,
+            my_subscription_location: 0,
+
+            feedsList: [],
+
+            feeds: [],
+            banners: [],
+            columns: [],
+            featuredArticle: []
+        })
+    }
+
     componentDidMount() {
         this.getContent(0)
     }
@@ -64,6 +86,8 @@ export default class NewsPageFlatList extends Component {
         console.log('last_key:' + last_key);
 
         await NetUtil.get(Api.news, params, result => {
+                console.log("response is :", result.response);
+
                 this.setState({
                         feeds: this.state.feeds.concat(result.response.feeds),
                         banners: this.state.banners.concat(result.response.banners),
@@ -129,10 +153,27 @@ export default class NewsPageFlatList extends Component {
                 getItemLayout={(data, index) => (
                     {length: 130, offset: 130 * index, index}
                 )}
+
+                    refreshing={true}
+                    refreshControl={
+                <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+                />}
             />
         );
     }
+
+    /**
+     * 下拉刷新
+     * @private
+     */
+    _onRefresh = () => {
+        this._initState();
+        this.getContent(0);
+    }
 }
+
 
 const styles = StyleSheet.create({
     container: {
