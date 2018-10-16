@@ -6,15 +6,11 @@
  */
 import React, {PureComponent} from 'react';
 import {
-    StyleSheet,
     Image,
     Dimensions,
-    Platform
 } from 'react-native';
 import Swiper from "react-native-swiper";
-
-let {width} = Dimensions.get('window');
-const ios = Platform.OS;
+import Colors from "../../../resources/Colors";
 
 export default class NewsBanner2 extends PureComponent {
 
@@ -40,29 +36,16 @@ export default class NewsBanner2 extends PureComponent {
 
     render() {
         return (
-            <Swiper height={200} showsButtons={true} loop={true} autoPlay={true} index={0}>
+            <Swiper
+                height={200}
+                loop={true}
+                autoPlay={true}
+                index={0}
+                activeDotColor={Colors.primary}
+                dotColor={Colors.light_gray}
+            >
                 {this.renderImgs()}
             </Swiper>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        marginTop: ios === 'ios' ? 25 : 0
-    },
-    circleContainer: {
-        width: width,
-        height: 30,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        bottom: 0
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});
