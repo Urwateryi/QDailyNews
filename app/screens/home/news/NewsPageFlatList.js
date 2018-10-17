@@ -76,16 +76,13 @@ export default class NewsPageFlatList extends Component {
     }
 
     async getContent(last_key) {
-        let params = new Map();
-        if (last_key !== 0) {
-            params.set('last_key', last_key);
-        } else {
-            params = null;
-        }
+
+        let url = Api.news.replace('{last_key}', last_key);
 
         console.log('last_key:' + last_key);
+        console.log('url:' + url);
 
-        await NetUtil.get(Api.news, params, result => {
+        await NetUtil.get(url, result => {
                 console.log("response is :", result.response);
 
                 this.setState({
@@ -160,6 +157,9 @@ export default class NewsPageFlatList extends Component {
                 refreshing={this.state.refreshing}
                 onRefresh={this._onRefresh}
                 />}
+                //加载更多
+                onEndReached={() => this._onLoadMore()}
+                onEndReachedThreshold={0.1}
             />
         );
     }
@@ -171,6 +171,15 @@ export default class NewsPageFlatList extends Component {
     _onRefresh = () => {
         this._initState();
         this.getContent(0);
+    }
+
+    _onLoadMore=()=>{
+        console.log("loadmore.out")
+        // 不处于正在加载更多 && 有下拉刷新过，因为没数据的时候 会触发加载
+        if (this.state.has_more && this.state.feeds.length > 0){
+            console.log("loadmore.in")
+            this.getContent(this.state.last_key)
+        }
     }
 }
 

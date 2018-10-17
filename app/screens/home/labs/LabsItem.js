@@ -28,14 +28,11 @@ export default class LabsItem extends PureComponent {
         let item = this.props.data;
         let type = this.props.type;
 
-        console.info("item:", item)
 
         let image = item.post.image;
         let title = item.post.title;
         let description = item.post.description;
 
-        console.log('title:', title)
-        console.log('description:', description)
         return (
             <TouchableOpacity style={[ labsItemStyles.container, { marginBottom : 5 } ]} activeOpacity={0.5} onPress={() => this.click()}>
                 <ImageBackground style={labsItemStyles.img} source={{ uri : image }} resizeMode='cover'>

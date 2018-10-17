@@ -14,13 +14,13 @@ export default {
      * 首页
      * GET请求
      */
-    news : host + 'app3/homes/index/0.json?',
+    news : host + 'app3/homes/index/{last_key}.json?',
 
     /**
      * Label页
      * GET 请求
      */
-    papers : host + 'app3/papers/index/0.json',
+    papers : host + 'app3/papers/index/{last_key}.json',
 
     /**
      * 新闻详情页
@@ -55,7 +55,7 @@ export default {
      *
      * id:文章id
      */
-    getCommentList : host + 'app3/comments/index/article/{id}/0.json',
+    getCommentList : host + 'app3/comments/index/article/{id}/{last_key}.json',
 
     /**
      * 手机号登录

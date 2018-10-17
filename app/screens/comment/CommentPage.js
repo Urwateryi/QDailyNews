@@ -51,7 +51,7 @@ export default class CommentPage extends BaseComponent {
         this.props.commentStore.type='article';
 
         this.showLoad();
-        this.getCommentList();
+        this.getCommentList(0);
     }
 
     renderItem = () => {
@@ -92,10 +92,11 @@ export default class CommentPage extends BaseComponent {
      * 获取评论列表
      * @returns {Promise<void>}
      */
-    async getCommentList() {
+    async getCommentList(last_key) {
 
-        await NetUtil.get(Api.getCommentList.replace("{id}", this.props.id),
-            null,
+        let url=Api.getCommentList.replace("{id}", this.props.id).replace("last_key",last_key);
+
+        await NetUtil.get(url,
             result => {
                 this.hideLoad();
 

@@ -11,14 +11,12 @@ export default class NetUtil {
      *url :请求地址
      *callback:回调函数
      */
-    static get(url, params, success, failure) {
+    static get(url, success, failure) {
 
         console.log("请求url:", url);
-        console.log("参数：", params);
 
         fetch(url, {
-            method : 'GET',
-            body : params
+            method : 'GET'
         })
             .then(this.checkStatus)
             .then((response) => response.json())

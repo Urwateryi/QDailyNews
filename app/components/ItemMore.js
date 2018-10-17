@@ -43,11 +43,8 @@ export default class ItemMore extends PureComponent {
         let item = this.props.item;
 
         let commentCount = item.post.comment_count;
-
         let categoryTitle = item.post.category.title;
-        console.log("time:"+item.post.publish_time)
         let publishTime = TimeUtil.getDateDiff(item.post.publish_time);
-        console.log("time:publishTime："+publishTime)
         return (
             <View style={moreItemStyles.more}>
                 <Text style={moreItemStyles.moreTxt}>{categoryTitle}</Text>
@@ -81,7 +78,7 @@ export default class ItemMore extends PureComponent {
      * @param item
      */
     goCommentList(item){
-        Actions.push('CommentPage',{id:item.post.id})
+        Actions.push('CommentPageFlatList',{id:item.post.id})
     }
 
     /**

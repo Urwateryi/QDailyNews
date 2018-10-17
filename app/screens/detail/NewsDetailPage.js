@@ -42,7 +42,7 @@ export default class NewsDetailPage extends BaseComponent {
     async getDetail(id) {
         let url = Api.newsDetail.replace('{id}', id);
 
-        await NetUtil.get(url, null, result => {
+        await NetUtil.get(url, result => {
                 console.log("result is :", result);
                 this.hideLoad();
                 this.setState({

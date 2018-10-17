@@ -70,16 +70,7 @@ export default class NewsPageScrollView extends Component {
     }
 
     async getContent(last_key) {
-        let params = new Map();
-        if (last_key !== 0) {
-            params.set('last_key', last_key);
-        } else {
-            params = null;
-        }
-
-        console.log('last_key:' + last_key);
-
-        await NetUtil.get(Api.news, params, result => {
+        await NetUtil.get(Api.news, result => {
                 this.setState({
                         feeds : this.state.feeds.concat(result.response.feeds),
                         feedsAd : this.state.feedsAd.concat(result.response.feeds_ad),

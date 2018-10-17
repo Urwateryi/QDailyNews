@@ -18,7 +18,7 @@ import NewsPageFlatList from "./screens/home/news/NewsPageFlatList";
 import LabsPageScrollView from "./screens/home/labs/LabsPageScrollView";
 import WebViewPage from "./screens/home/WebViewPage";
 import NewsDetailPage from "./screens/detail/NewsDetailPage";
-import CommentPage from "./screens/comment/CommentPage";
+import CommentPageFlatList from "./screens/comment/CommentPageFlatList";
 
 import { Provider } from 'mobx-react';
 import commentStore from './stores/CommentStore';
@@ -89,7 +89,7 @@ const scenes = Actions.create(
         </Scene>
         <Scene key="WebViewPage" component={WebViewPage}/>
         <Scene key="NewsDetailPage" component={NewsDetailPage}/>
-        <Scene key="CommentPage" component={CommentPage}/>
+        <Scene key="CommentPageFlatList" component={CommentPageFlatList}/>
         <Scene key="LoginPage" component={LoginPage}/>
         <Scene key="NetErrorPage" component={NetErrorPage}/>
         <Scene key="NoDataPage" component={NoDataPage}/>

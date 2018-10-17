@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, RefreshControl} from "react-native";
+import {ScrollView, StyleSheet, RefreshControl, FlatList} from "react-native";
 import NetUtil from "../../../utils/NetUtil";
 import Api from "../../../network/Api";
 import LabsItem from "./../labs/LabsItem";
@@ -52,22 +52,18 @@ export default class LabsPageScrollView extends Component {
      */
     async getContent(last_key) {
 
-        let params = new Map();
-        if (last_key !== 0) {
-            params.set('last_key', last_key);
-        } else {
-            params = null;
-        }
+        let url = Api.papers.replace('{last_key}', last_key);
 
         console.log('last_key:' + last_key);
+        console.log('url:' + url);
 
-
-        await NetUtil.get(Api.papers, params, result => {
+        await NetUtil.get(url, result => {
                 console.log("response is :", result.response)
                 this.setState({
                         paperTopic: this.state.paperTopic.concat(result.response.paper_topics),
                         feeds: this.state.feeds.concat(result.response.feeds),
                         loading: false,
+                        has_more: result.response.has_more,
                         refreshing: false,
                     }
                 );
@@ -95,7 +91,6 @@ export default class LabsPageScrollView extends Component {
                  i++) {
                 let feedsItem = this.state.feeds[i];
 
-                console.log("key i:" + i);
                 itemAry.push(
                     <LabsItem key={i} data={feedsItem} type={Constants.item_type_lab}/>
                 );
@@ -150,6 +145,9 @@ export default class LabsPageScrollView extends Component {
                         onRefresh={this._onRefresh}
                     />
                 }
+                //加载更多
+                onEndReached={() => this._onLoadMore()}
+                onEndReachedThreshold={0.1}
             >{
                 this.renderItem()
             }
@@ -163,7 +161,7 @@ export default class LabsPageScrollView extends Component {
      */
     _onRefresh = () => {
         this.setState({
-            refreshing :true,
+            refreshing: true,
             last_key: 0,
             feedsList: [],
 
@@ -177,16 +175,12 @@ export default class LabsPageScrollView extends Component {
      * 上拉加载更多
      * @private
      */
-    _loadMore=()=>{
-        console.log("loadmore..."+this.state.last_key)
-
-        this.setState({
-            refreshing :true,
-        })
-
-        if (!this.onEndReachedCalledDuringMomentum) {
-            this.getContent(this.state.last_key);
-            this.onEndReachedCalledDuringMomentum = true;
+    _onLoadMore = () => {
+        console.log("loadmore.out")
+        // 不处于正在加载更多 && 有下拉刷新过，因为没数据的时候 会触发加载
+        if (this.state.has_more && this.state.feeds.length > 0) {
+            console.log("loadmore.in")
+            this.getContent(this.state.last_key)
         }
     }
 }
