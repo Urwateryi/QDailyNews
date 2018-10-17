@@ -37,9 +37,11 @@ export default class NewsBanner2 extends PureComponent {
     render() {
         return (
             <Swiper
+                key={this.props.data.length}
                 height={200}
                 loop={true}
                 autoPlay={true}
+                autoplayTimeout={1}
                 index={0}
                 activeDotColor={Colors.primary}
                 dotColor={Colors.light_gray}
