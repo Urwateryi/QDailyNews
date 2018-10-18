@@ -50,5 +50,8 @@ export default {
         ic_back:require('./imgs/ic_back.png'),
         ic_net_error:require('./imgs/ic_net_error.png'),
         ic_no_data:require('./imgs/ic_no_data.png'),
+        ic_default_head:require('./imgs/ic_default_head.png'),
+        ic_next:require('./imgs/ic_next.png'),
+        ic_search:require('./imgs/ic_search.png'),
     }
 }

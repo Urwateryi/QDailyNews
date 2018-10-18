@@ -6,7 +6,7 @@
  */
 import React, {PureComponent} from 'react';
 import { View,Platform, StyleSheet } from "react-native";
-export default class SettingPage extends PureComponent {
+export default class SearchPage extends PureComponent {
 
     render() {
         return (

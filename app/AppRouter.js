@@ -30,6 +30,9 @@ import LoginPage from "./screens/setting/login/LoginPage";
 import { YellowBox } from 'react-native';
 import NetErrorPage from "./components/NetErrorPage";
 import NoDataPage from "./components/NoDataPage";
+import AccountPage from "./screens/setting/AccountPage";
+import SettingPage from "./screens/setting/SettingPage";
+import SearchPage from "./screens/setting/SearchPage";
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
@@ -93,5 +96,8 @@ const scenes = Actions.create(
         <Scene key="LoginPage" component={LoginPage}/>
         <Scene key="NetErrorPage" component={NetErrorPage}/>
         <Scene key="NoDataPage" component={NoDataPage}/>
+        <Scene key="AccountPage" component={AccountPage}/>
+        <Scene key="SettingPage" component={SettingPage}/>
+        <Scene key="SearchPage" component={SearchPage}/>
     </Scene>
 );

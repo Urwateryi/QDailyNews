@@ -7,6 +7,8 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
+    View,
+    Image,
     FlatList, RefreshControl,
 } from 'react-native';
 
@@ -15,10 +17,13 @@ import FeedsItem from "./FeedsItem";
 import Api from "../../../network/Api";
 import NetUtil from "../../../utils/NetUtil";
 import NewsBanner2 from "./NewsBanner2";
+import ActionButton from 'react-native-action-button';
 
 const MAX_RESULT = 20;//每页最大记录数
 
 import {YellowBox} from 'react-native';
+import Images from "../../../resources/Images";
+import {Actions} from "react-native-router-flux";
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
@@ -45,7 +50,7 @@ export default class NewsPageFlatList extends Component {
             feeds: [],
             banners: [],
             columns: [],
-            featuredArticle: [],
+            featuredArticle: []
         };
     }
 
@@ -139,30 +144,35 @@ export default class NewsPageFlatList extends Component {
 
     render() {
         return (
-            <FlatList
-                data={this.state.feeds}
-                style={styles.container}
-                keyExtractor={this.keyExtractor}
-                renderItem={this.renderItem}
 
-                ListHeaderComponent={this.renderHeader(this.state.banners)}
+            <View style={styles.container}>
+                <FlatList
+                    data={this.state.feeds}
+                    keyExtractor={this.keyExtractor}
+                    renderItem={this.renderItem}
 
-                getItemLayout={(data, index) => (
-                    {length: 130, offset: 130 * index, index}
-                )}
+                    ListHeaderComponent={this.renderHeader(this.state.banners)}
+
+                    getItemLayout={(data, index) => (
+                        {length: 130, offset: 130 * index, index}
+                    )}
 
                     refreshing={true}
                     refreshControl={
-                <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this._onRefresh}
-                />}
-                //加载更多
-                onEndReached={() => this._onLoadMore()}
-                onEndReachedThreshold={0.1}
-            />
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh}
+                        />}
+                    //加载更多style={[
+                    onEndReached={() => this._onLoadMore()}
+                    onEndReachedThreshold={0.1}
+                />
+
+                {this._showActionButton()}
+            </View>
         );
     }
+
 
     /**
      * 下拉刷新
@@ -173,13 +183,29 @@ export default class NewsPageFlatList extends Component {
         this.getContent(0);
     }
 
-    _onLoadMore=()=>{
+    _onLoadMore = () => {
         console.log("loadmore.out")
         // 不处于正在加载更多 && 有下拉刷新过，因为没数据的时候 会触发加载
-        if (this.state.has_more && this.state.feeds.length > 0){
+        if (this.state.has_more && this.state.feeds.length > 0) {
             console.log("loadmore.in")
             this.getContent(this.state.last_key)
         }
+    }
+
+    _showActionButton = () => {
+        return (
+            <ActionButton buttonColor={Colors.primary} position='left' verticalOrientation='up'>
+                <ActionButton.Item onPress={() => Actions.push('SearchPage')}>
+                    <Image source={Images.all.ic_search} style={styles.actionButtonIcon}/>
+                </ActionButton.Item>
+                <ActionButton.Item onPress={() => Actions.push('AccountPage')}>
+                    <Image source={Images.menu.ic_menu_usercenter} style={styles.actionButtonIcon}/>
+                </ActionButton.Item>
+                <ActionButton.Item onPress={() => Actions.push('SettingPage')}>
+                    <Image source={Images.menu.ic_menu_setting} style={styles.actionButtonIcon}/>
+                </ActionButton.Item>
+            </ActionButton>
+        )
     }
 }
 
@@ -193,5 +219,12 @@ const styles = StyleSheet.create({
         fontSize: 50,
         textAlign: 'center',
         color: Colors.gray,
+    }, actionButtonIcon: {
+        width: 50,
+        height: 50
+    }, cover: {
+        flex: 1,
+        backgroundColor: Colors.trans_gray
     }
+
 });

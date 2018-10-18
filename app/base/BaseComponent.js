@@ -5,11 +5,20 @@
  * Author: zoe
  * Time: 2018/6/4 0031
  */
-import React, { Component } from "react";
-import { StyleSheet, View, Text, ToastAndroid, Image, TouchableOpacity, Dimensions, ActivityIndicator } from "react-native";
+import React, {Component} from "react";
+import {
+    StyleSheet,
+    View,
+    Text,
+    ToastAndroid,
+    Image,
+    TouchableOpacity,
+    Dimensions,
+    ActivityIndicator
+} from "react-native";
 import Colors from "../resources/Colors";
 import Images from "../resources/Images";
-import { Actions } from 'react-native-router-flux'
+import {Actions} from 'react-native-router-flux'
 
 export default class BaseComponent extends Component {
 
@@ -20,25 +29,25 @@ export default class BaseComponent extends Component {
         this.state = {
 
             //title
-            isShowRightTxtLeft : false,//title右部左边文字按钮，是否显示
-            isShowRightTxtRight : false,//title右部右边文字按钮，是否显示
-            isShowRightImgLeft : false,//title右部左边图片按钮，是否显示
-            isShowRightImgRight : false,//title右部左边图片按钮，是否显示
-            isShowRightBtn : false,//title右部按钮，是否显示
-            isShowLeftBtn : true,//title左部按钮，是否显示
+            isShowRightTxtLeft: false,//title右部左边文字按钮，是否显示
+            isShowRightTxtRight: false,//title右部右边文字按钮，是否显示
+            isShowRightImgLeft: false,//title右部左边图片按钮，是否显示
+            isShowRightImgRight: false,//title右部左边图片按钮，是否显示
+            isShowRightBtn: false,//title右部按钮，是否显示
+            isShowLeftBtn: true,//title左部按钮，是否显示
 
-            centerTxt : '',//中间title
-            leftImg : Images.all.ic_back,//title左边的图片
-            txtLeft : '确定',//title右部，左边文字按钮的文字内容
-            txtRight : '',//title右部，右边文字按钮的文字内容
-            imgLeft : '',//title右部，左边图片按钮的图片资源
-            imgRight : '',//title右部，右边图片按钮的图片资源
-            rightBtnTxt : '',//title右部，按钮的文字内容
-            rightBtnBgColor : Colors.primary,//title右部，按钮的背景颜色
-            rightBtnTxtColor : Colors.white,//title右部，按钮的文字颜色
+            centerTxt: '',//中间title
+            leftImg: Images.all.ic_back,//title左边的图片
+            txtLeft: '确定',//title右部，左边文字按钮的文字内容
+            txtRight: '',//title右部，右边文字按钮的文字内容
+            imgLeft: '',//title右部，左边图片按钮的图片资源
+            imgRight: '',//title右部，右边图片按钮的图片资源
+            rightBtnTxt: '',//title右部，按钮的文字内容
+            rightBtnBgColor: Colors.primary,//title右部，按钮的背景颜色
+            rightBtnTxtColor: Colors.white,//title右部，按钮的文字颜色
 
             //pageLoad
-            isLoad : true,//是否加载
+            isLoad: true,//是否加载
         };
 
         this.onClickRightTxtLeft = this.onClickRightTxtLeft.bind(this);
@@ -75,8 +84,8 @@ export default class BaseComponent extends Component {
      */
     setRightTxtLeftVisible = (rightTxtLeft) => {
         this.setState({
-            isShowRightTxtLeft : true,
-            txtLeft : rightTxtLeft
+            isShowRightTxtLeft: true,
+            txtLeft: rightTxtLeft
         });
     };
 
@@ -86,8 +95,8 @@ export default class BaseComponent extends Component {
      */
     setRightTxtRightVisible = (rightTxtRight) => {
         this.setState({
-            isShowRightTxtRight : true,
-            txtRight : rightTxtRight
+            isShowRightTxtRight: true,
+            txtRight: rightTxtRight
         });
     };
 
@@ -97,8 +106,8 @@ export default class BaseComponent extends Component {
      */
     setRightImgLeftVisible = (rightImgLeft) => {
         this.setState({
-            isShowRightImgLeft : true,
-            imgLeft : rightImgLeft
+            isShowRightImgLeft: true,
+            imgLeft: rightImgLeft
         });
     };
 
@@ -108,8 +117,8 @@ export default class BaseComponent extends Component {
      */
     setRightImgRightVisible = (rightImgRight) => {
         this.setState({
-            isShowRightImgRight : true,
-            imgRight : rightImgRight
+            isShowRightImgRight: true,
+            imgRight: rightImgRight
         });
     };
 
@@ -119,7 +128,7 @@ export default class BaseComponent extends Component {
      */
     setTitleCenter = (centerContent) => {
         this.setState({
-            centerTxt : centerContent
+            centerTxt: centerContent
         })
     };
 
@@ -129,8 +138,8 @@ export default class BaseComponent extends Component {
      */
     setRightBtnVisible = (rightBtnTxt) => {
         this.setState({
-            isShowRightBtn : true,
-            rightBtnTxt : rightBtnTxt,
+            isShowRightBtn: true,
+            rightBtnTxt: rightBtnTxt,
         });
     };
 
@@ -140,7 +149,7 @@ export default class BaseComponent extends Component {
      */
     setLeftImgVisible = (leftImg) => {
         this.setState({
-            leftImg : leftImg
+            leftImg: leftImg
         });
     };
 
@@ -164,12 +173,12 @@ export default class BaseComponent extends Component {
         ToastAndroid.show('onClickRightBtnRight', ToastAndroid.SHORT)
     };
 
-    onClickLeftImg() {
+    onClickLeftImg=()=> {
         Actions.pop();
     };
 
     renderRightButton() {
-        console.log('txtLeft：'+ this.state.isShowRightTxtRight);
+        console.log('txtLeft：' + this.state.isShowRightTxtRight);
         return (
             <View style={styles.view_right}>
                 {this.state.isShowRightTxtLeft ?
@@ -206,7 +215,7 @@ export default class BaseComponent extends Component {
      */
     showLoad() {
         this.setState({
-                isLoad : true
+                isLoad: true
             }
         );
     };
@@ -216,7 +225,7 @@ export default class BaseComponent extends Component {
      */
     hideLoad() {
         this.setState({
-                isLoad : false
+                isLoad: false
             }
         );
     };
@@ -226,16 +235,11 @@ export default class BaseComponent extends Component {
      * @returns {*}
      */
     renderTitle() {
-        console.log('left: renderTitle '+this.state.isShowLeftBtn);
         return (
             <View style={styles.title}>
-                {
-                    this.state.isShowLeftBtn ?
-                        (<TouchableOpacity onPress={() => this.onClickLeftImg()}>
-                            <Image style={styles.left_img} source={Images.item.ic_praise_normal}/>
-                        </TouchableOpacity>) : null
-                }
-
+                <TouchableOpacity onPress={this.onClickLeftImg}>
+                    <Image style={styles.left_img} source={Images.all.ic_back}/>
+                </TouchableOpacity>
                 <Text style={styles.txt}>{this.state.centerTxt}</Text>
                 {this.renderRightButton()}
             </View>
@@ -249,10 +253,8 @@ export default class BaseComponent extends Component {
     };
 
     render() {
-        console.log('left: render '+this.state.isShowLeftBtn);
-
         return (
-            <View style={[ styles.container, this.props.style ]}>
+            <View style={[styles.container, this.props.style]}>
                 {this.renderTitle()}
 
                 {this.state.isLoad ? <ActivityIndicator style={styles.indicator} size='large' color='#ff0000'/> :
@@ -264,64 +266,64 @@ export default class BaseComponent extends Component {
 }
 
 const styles = StyleSheet.create({
-    container : {
-        flex : 1,
-        backgroundColor : Colors.bg,
-    }, indicator : {
-        flex : 1,
-        justifyContent : 'center',
-        alignItems : 'center',
-        backgroundColor : 'white',
+    container: {
+        flex: 1,
+        backgroundColor: Colors.bg,
+    }, indicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
     },
-    title : {
-        flexDirection : 'row',
-        alignItems : 'center',
-        height : 50,
-        width : Dimensions.get('window').width,
-        backgroundColor : Colors.white,
+    title: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 50,
+        width: Dimensions.get('window').width,
+        backgroundColor: Colors.white,
 
         //以下是阴影属性：
-        shadowOffset : { width : 0, height : 5 },
-        shadowOpacity : 1,
-        shadowRadius : 15,
-        shadowColor : Colors.light_gray,
+        shadowOffset: {width: 0, height: 5},
+        shadowOpacity: 1,
+        shadowRadius: 15,
+        shadowColor: Colors.light_gray,
         //注意：这一句是可以让安卓拥有灰色阴影
-        elevation : 5,
+        elevation: 5,
     },
-    left_img : {
-        width : 20,
-        height : 20,
-        resizeMode : 'center',
-        marginLeft : 10,
+    left_img: {
+        width: 20,
+        height: 20,
+        resizeMode: 'center',
+        marginLeft: 10,
     },
-    txt : {
-        flex : 1,
-        textAlign : 'center',
-        color : Colors.black,
-        fontSize : 17,
+    txt: {
+        flex: 1,
+        textAlign: 'center',
+        color: Colors.black,
+        fontSize: 17,
     },
-    title_right : {
-        color : Colors.black,
-        fontSize : 14,
-        marginLeft : 10,
+    title_right: {
+        color: Colors.black,
+        fontSize: 14,
+        marginLeft: 10,
     },
-    img_right : {
-        width : 20,
-        height : 20,
-        resizeMode : 'center',
-        marginLeft : 10,
+    img_right: {
+        width: 20,
+        height: 20,
+        resizeMode: 'center',
+        marginLeft: 10,
     },
-    btn_right : {
-        width : 60,
-        height : 30,
-        textAlign : 'center',
-        textAlignVertical : 'center',
-        color : Colors.white,
-        backgroundColor : Colors.primary,
-        borderRadius : 5,
+    btn_right: {
+        width: 60,
+        height: 30,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        color: Colors.white,
+        backgroundColor: Colors.primary,
+        borderRadius: 5,
     },
-    view_right : {
-        flexDirection : 'row',
-        marginRight : 18,
+    view_right: {
+        flexDirection: 'row',
+        marginRight: 18,
     }
 });
