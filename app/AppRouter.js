@@ -32,7 +32,7 @@ import NetErrorPage from "./components/NetErrorPage";
 import NoDataPage from "./components/NoDataPage";
 import AccountPage from "./screens/setting/AccountPage";
 import SettingPage from "./screens/setting/SettingPage";
-import SearchPage from "./screens/setting/SearchPage";
+import SearchPage from "./screens/search/SearchPage";
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',

@@ -79,5 +79,16 @@ export default {
      * remember_me 1或者0
      */
     loginEmail:host+'users/sign_in',
+
+    /**
+     * 搜索
+     *
+     * GET
+     * last_key 最后一条的key
+     * search 搜索的内容
+     *
+     * 如果要显示高亮的，则可以使用post_highlighting_list
+     */
+    search:host+'app3/searches/post_list.json?last_key={last_key}&search={content}',
 }
 

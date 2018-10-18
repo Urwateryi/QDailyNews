@@ -53,5 +53,7 @@ export default {
         ic_default_head:require('./imgs/ic_default_head.png'),
         ic_next:require('./imgs/ic_next.png'),
         ic_search:require('./imgs/ic_search.png'),
+        ic_default_book:require('./imgs/ic_default_book.png'),
+        ic_nodata:require('./imgs/ic_nodata.png'),
     }
 }
